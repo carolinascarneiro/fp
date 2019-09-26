@@ -4,56 +4,39 @@ import numpy as np
 import time
 from sklearn.metrics.pairwise import cosine_similarity
 
-#Import Data Frames (Do I really need this?)
-
-# MATRIX_RATES = pd.read_csv('matrix_rates.csv')
-# MATRIX_RATES.set_index('users', inplace=True)
-#
-# MATRIX_TL = pd.read_csv('matrix_tl.csv')
-# MATRIX_TL.set_index('users', inplace=True)
-
-#STEP 1
-# I want my code to receive a new user through an input function:
-# this will generate a dictionary where input value, key will be put into a dataframe
-
-#Taking the inputs to generate a dict with skills and ratings for the 1st matrix
-#def do_everything():
-#return '\nHello! Shall we find a good learning/teaching partner for you?'
-
-# time.sleep(3)
-def do_everything():
+def do_everything(skills_dict, teach_learn_dict):
     MATRIX_RATES = pd.read_csv('/Users/carolinasantoscarneiro/Desktop/final/matrix_rates.csv')
     MATRIX_RATES.set_index('users', inplace=True)
 
     MATRIX_TL = pd.read_csv('/Users/carolinasantoscarneiro/Desktop/final/matrix_tl.csv')
     MATRIX_TL.set_index('users', inplace=True)
-    # user_id = input
-    # a,b,c,d,e = input
-    a, b, c, d, e = 'german', 'french', 'python', 'javascript', 'sewing'
-    # a = input(f'\nPlease, from the list, give me 5 skills you would want to learn or teach: \n\n').lower()
-    # b = input(f'\n').lower()
-    # c = input(f'\n').lower()
-    # d = input(f'\n').lower()
-    # e = input(f'\n').lower()
+    # # user_id = input
+    # # a,b,c,d,e = input
+    # a, b, c, d, e = 'german', 'french', 'python', 'javascript', 'sewing'
+    # # a = input(f'\nPlease, from the list, give me 5 skills you would want to learn or teach: \n\n').lower()
+    # # b = input(f'\n').lower()
+    # # c = input(f'\n').lower()
+    # # d = input(f'\n').lower()
+    # # e = input(f'\n').lower()
 
-    f, g, h, i, j = 1, 3, 4, 5, 1
-    # f = input(f'\nPlease, tell me, from 1 to 5, how you rate yourself in {a}: \n')
-    # g = input(f'{b}: \n')
-    # h = input(f'{c}: \n')
-    # i = input(f'{d}: \n')
-    # j = input(f'{e}: \n')
+    # f, g, h, i, j = 1, 3, 4, 5, 1
+    # # f = input(f'\nPlease, tell me, from 1 to 5, how you rate yourself in {a}: \n')
+    # # g = input(f'{b}: \n')
+    # # h = input(f'{c}: \n')
+    # # i = input(f'{d}: \n')
+    # # j = input(f'{e}: \n')
 
-    skills_dict = {a.lower(): float(f), b.lower(): float(g), c.lower(): float(h), d.lower(): float(i), e.lower(): float(j)}
+    # skills_dict = {a.lower(): float(f), b.lower(): float(g), c.lower(): float(h), d.lower(): float(i), e.lower(): float(j)}
 
-    print('\nNow I would like to know if you want to teach or learn each skill.\n')
-    # time.sleep(3)
-    k, l, m, n, o = -1, 1, -1, 1, -1
-    # k = input(f'Would you like to learn or teach {a}? \n')
-    # l = input(f'Would you like to learn or teach {b}? \n')
-    # m = input(f'Would you like to learn or teach {c}? \n')
-    # n = input(f'Would you like to learn or teach {d}? \n')
-    # o = input(f'Would you like to learn or teach {e}? \n')
-    teach_learn_dict = {a.lower():float(k),b.lower():float(l),c.lower():float(m),d.lower():float(n),e.lower():float(o)}
+    # print('\nNow I would like to know if you want to teach or learn each skill.\n')
+    # # time.sleep(3)
+    # k, l, m, n, o = -1, 1, -1, 1, -1
+    # # k = input(f'Would you like to learn or teach {a}? \n')
+    # # l = input(f'Would you like to learn or teach {b}? \n')
+    # # m = input(f'Would you like to learn or teach {c}? \n')
+    # # n = input(f'Would you like to learn or teach {d}? \n')
+    # # o = input(f'Would you like to learn or teach {e}? \n')
+    # teach_learn_dict = {a.lower():float(k),b.lower():float(l),c.lower():float(m),d.lower():float(n),e.lower():float(o)}
 
 
     # return skills_dict, teach_learn_dict
@@ -104,7 +87,7 @@ def do_everything():
     cosim = dict(list(enumerate(df1.iloc[-1])))
     sorted_dict = {key : value for key, value in sorted(cosim.items(), key=lambda item: item[1], reverse=True)}
     top_10 = list(sorted_dict.keys())
-    top_10 = top_10[1:10]
+    top_10 = top_10[1:20]
     print(f'\nThese are the most similar users to you: {top_10}\n')
     # return top_10
 
